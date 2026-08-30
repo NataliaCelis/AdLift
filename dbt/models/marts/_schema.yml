@@ -1,0 +1,70 @@
+version: 2
+
+models:
+  - name: dim_users
+    description: One row per user with arm assignment, exposure, and outcome.
+    columns:
+      - name: user_id
+        tests:
+          - unique
+          - not_null
+      - name: test_group
+        tests:
+          - not_null
+          - accepted_values:
+              values: ['ad', 'psa']
+      - name: total_ads
+        tests:
+          - not_null
+          - dbt_utils.accepted_range:
+              min_value: 1
+
+  - name: fct_conversions
+    description: BI-facing fact table, one row per user, ready for Tableau/Looker Studio.
+    columns:
+      - name: user_id
+        tests:
+          - unique
+          - not_null
+      - name: converted_int
+        tests:
+          - not_null
+          - accepted_values:
+              values: [0, 1]
+
+  - name: agg_daily_conversion
+    description: Daily conversion rate by test group, for the stability chart.
+    columns:
+      - name: most_ads_day
+        tests:
+          - not_null
+      - name: conversion_rate
+        tests:
+          - not_null
+
+  - name: agg_dose_response
+    description: Conversion rate by ad-exposure bucket (ad group only).
+    columns:
+      - name: conversion_rate
+        tests:
+          - not_null
+
+  - name: agg_experiment_summary
+    description: >
+      Single-row topline experiment summary. This is a PSA-holdout design,
+      not a 50/50 split, so we don't test pct_psa_holdout against 0.5 -
+      instead see tests/assert_exposure_balance.sql, which checks that
+      ad-slot exposure opportunity is balanced across arms (the actual
+      guardrail for this design).
+    tests:
+      - dbt_utils.expression_is_true:
+          expression: "n_total > 0"
+    columns:
+      - name: pct_psa_holdout
+        description: >
+          Share of users in the PSA holdout. Expected to be small (~4%) by
+          design; tested only for a sane range, not for 50/50.
+        tests:
+          - dbt_utils.accepted_range:
+              min_value: 0.01
+              max_value: 0.50

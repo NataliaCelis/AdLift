@@ -1,0 +1,26 @@
+version: 2
+
+sources:
+  - name: raw
+    database: AD_LIFT
+    schema: raw
+    tables:
+      - name: ad_events
+        description: >
+          Raw ad-lift experiment log. One row per user: whether they were
+          shown the real ad or the PSA holdout, their ad-slot exposure
+          count, and whether they converted. Loaded from
+          marketing_ab_clean.csv (see load_raw_data_snowflake.sql).
+        columns:
+          - name: user_id
+            description: Unique user identifier.
+          - name: test_group
+            description: "Arm assignment: ad (treatment) or psa (holdout/control)."
+          - name: converted
+            description: True if the user purchased.
+          - name: total_ads
+            description: Number of ad-slot impressions the user was exposed to.
+          - name: most_ads_day
+            description: Day of week with the highest ad-slot exposure for this user.
+          - name: most_ads_hour
+            description: Hour of day (0-23) with the highest ad-slot exposure.

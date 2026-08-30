@@ -1,0 +1,17 @@
+# Copy this file to ~/.dbt/profiles.yml and fill in your Snowflake credentials.
+# Free trial: https://signup.snowflake.com/  (30-day / $400 credit trial)
+
+ad_lift_platform:
+  target: dev
+  outputs:
+    dev:
+      type: snowflake
+      account: "{{ env_var('SNOWFLAKE_ACCOUNT') }}"        # e.g. xy12345.us-east-1
+      user: "{{ env_var('SNOWFLAKE_USER') }}"
+      password: "{{ env_var('SNOWFLAKE_PASSWORD') }}"
+      role: TRANSFORMER
+      database: AD_LIFT
+      warehouse: COMPUTE_WH
+      schema: analytics
+      threads: 4
+      client_session_keep_alive: false

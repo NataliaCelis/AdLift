@@ -1,0 +1,27 @@
+{
+  "hypothesis": {
+    "design": "Ad exposure lift study (PSA holdout design) - most users see the real ad; a smaller randomized holdout sees a public service announcement (PSA) in the same slot instead of the ad. This isolates the causal/incremental effect of the ad itself.",
+    "null_hypothesis": "H0: Conversion rate is equal whether a user is shown the ad or the PSA (p_ad = p_psa).",
+    "alt_hypothesis": "H1: Conversion rate differs between ad and PSA (p_ad != p_psa). Two-sided test; directionally we expect ads to lift conversion.",
+    "primary_metric": "converted (binary): whether the user completed a purchase.",
+    "guardrail_metrics": [
+      "Exposure-opportunity balance: 'total ads' (ad-slot impressions) should have a similar distribution in both arms, confirming the ad/PSA swap was randomized at the impression level and not confounded by which users happened to browse more.",
+      "Holdout size adequacy: is the (intentionally small) PSA group still large enough to reach the pre-registered power?",
+      "Dose-response sanity check: conversion should trend upward with more ad exposure within the ad group, consistent with a real causal effect rather than noise."
+    ]
+  },
+  "power_analysis": {
+    "baseline_conversion_rate": 0.018,
+    "mde_relative_pct": 15.0,
+    "target_conversion_rate": 0.0207,
+    "alpha": 0.05,
+    "power": 0.8,
+    "actual_allocation_ratio_psa_to_ad": 0.0417,
+    "cohens_h_effect_size": 0.0196,
+    "required_n_psa_holdout": 21256,
+    "required_n_ad": 510145,
+    "actual_n_psa_holdout": 23524,
+    "actual_n_ad": 564577,
+    "holdout_adequately_powered": true
+  }
+}

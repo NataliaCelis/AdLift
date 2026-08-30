@@ -1,0 +1,78 @@
+{
+  "allocation_guardrail": {
+    "n_ad": 564577,
+    "n_psa": 23524,
+    "psa_holdout_pct": 4.0,
+    "note": "This is an intentional PSA-holdout design (not a 50/50 split), common in industry ad-lift studies. Instead of expecting 50/50, we check that ad-slot exposure opportunity ('total_ads') is balanced across arms, which confirms the ad/PSA swap itself was randomized rather than confounded by browsing intensity.",
+    "mean_total_ads_ad_group": 24.823,
+    "mean_total_ads_psa_group": 24.761,
+    "welch_ttest_p_value": 0.8274,
+    "exposure_balanced": true
+  },
+  "topline": {
+    "n_ad": 564577,
+    "n_psa": 23524,
+    "conversion_rate_ad": 0.02555,
+    "conversion_rate_psa": 0.01785,
+    "conversion_rate_ad_ci95": [
+      0.02514,
+      0.02596
+    ],
+    "conversion_rate_psa_ci95": [
+      0.01624,
+      0.01963
+    ],
+    "absolute_lift_pp": 0.7692,
+    "relative_lift_pct": 43.09,
+    "absolute_lift_ci95_pp": [
+      0.5951,
+      0.9434
+    ],
+    "incremental_conversions": 4343
+  },
+  "z_test": {
+    "z_statistic": 7.3701,
+    "p_value": 1.7052807161559727e-13,
+    "significant_at_0.05": true
+  },
+  "chi_square_test": {
+    "chi2_statistic": 54.0058,
+    "p_value": 1.9989623063390075e-13,
+    "degrees_of_freedom": 1,
+    "significant_at_0.05": true
+  },
+  "bootstrap": {
+    "n_resamples": 10000,
+    "mean_lift_pp": 0.7702,
+    "ci95_pp": [
+      0.5927,
+      0.9409
+    ],
+    "prob_ad_beats_psa": 1.0
+  },
+  "dose_response": {
+    "spearman_corr_total_ads_vs_converted": 0.1945,
+    "spearman_p_value": 0.0,
+    "monotonic_increasing": true,
+    "note": "Within the ad group only, more ad exposure is associated with higher conversion, consistent with a real causal ad effect rather than a randomization artifact."
+  },
+  "daily_stability": {
+    "lift_pp_by_day": {
+      "Monday": 1.068,
+      "Tuesday": 1.599,
+      "Wednesday": 0.96,
+      "Thursday": 0.141,
+      "Friday": 0.616,
+      "Saturday": 0.731,
+      "Sunday": 0.402
+    },
+    "lift_positive_every_day": true
+  },
+  "recommendation": {
+    "exposure_balance_ok": true,
+    "statistically_significant": true,
+    "direction_positive": true,
+    "dose_response_supports_causality": true,
+    "recommendation": "SHIP - statistically significant positive lift, confirmed by a consistent dose-response relationship and stable across every day of week."
+  }
+}

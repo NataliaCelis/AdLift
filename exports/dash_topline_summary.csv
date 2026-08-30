@@ -1,0 +1,2 @@
+n_ad,n_psa,psa_holdout_pct,conversion_rate_ad_pct,conversion_rate_psa_pct,absolute_lift_pp,relative_lift_pct,lift_ci95_lower_pp,lift_ci95_upper_pp,p_value,statistically_significant,incremental_conversions,assumed_aov_usd,estimated_incremental_revenue_usd,recommendation
+564577,23524,4.0,2.555,1.785,0.7692,43.09,0.5951,0.9434,1.7052807161559727e-13,True,4343,50,217150,"SHIP - statistically significant positive lift, confirmed by a consistent dose-response relationship and stable across every day of week."

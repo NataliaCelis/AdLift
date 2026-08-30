@@ -1,0 +1,28 @@
+{
+  "rows_raw": 588101,
+  "null_counts": {
+    "user_id": 0,
+    "test_group": 0,
+    "converted": 0,
+    "total_ads": 0,
+    "most_ads_day": 0,
+    "most_ads_hour": 0
+  },
+  "duplicate_user_ids": 0,
+  "invalid_test_group_values": 0,
+  "invalid_hour_range": 0,
+  "total_ads_min": 1,
+  "total_ads_max": 2065,
+  "rows_clean_final": 588101,
+  "group_counts": {
+    "ad": 564577,
+    "psa": 23524
+  },
+  "exposure_balance_check": {
+    "note": "Mean 'total_ads' (ad-slot impressions) by group - should be similar across arms if the ad/PSA swap was randomized at the impression level, independent of the intentional group-size imbalance.",
+    "mean_total_ads_by_group": {
+      "ad": 24.823,
+      "psa": 24.761
+    }
+  }
+}
