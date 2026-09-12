@@ -92,6 +92,5 @@ see the uncertainty, not just the point estimate.
 
 ## Revenue estimate caveat
 This dataset has no order-value field, so `dash_topline_summary.csv` and the
-memo compute incremental revenue using an **illustrative $50 AOV assumption**
-(clearly labeled, not fabricated as fact). Swap in your real average order
-value before using the revenue number anywhere it matters.
+memo compute incremental revenue using a **$50 AOV assumption.** Swap in your real average order
+value before using the revenue number anywhere it matters!
